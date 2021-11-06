@@ -1,0 +1,55 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<p class="h1 fw-bold mb-3">
+    <a href='{% url "mainapp:read_objects" %}'><i class="bi bi-arrow-left-circle-fill me-2"></i></a>
+    {{form.last_name.value}},  {{form.first_name.value}}
+</p>
+<div class="card p-5">
+    <div class="d-flex justify-content-end mb-3">
+        <h6 id='enable' class="info_update" style="cursor: pointer;"><span class="badge bg-success p-2"><i class="bi bi-check-circle-fill me-2"></i>Update information</span></h6>
+        <a class="d-none" href="{% url 'mainapp:update_object' request.resolver_match.kwargs.pk %}"><h6 class="info_update" style="cursor: pointer;"><span class="badge bg-secondary p-2"><i class="bi bi-x-circle-fill me-2"></i>Cancel update</span></h6></a>
+    </div>
+    
+    <div id='display_info'>
+        {% for key, value in instance.display_info.items %}
+        <p>
+            <span class="fw-bold">{{key}}: </span> {{value}}
+        </p> 
+        {% endfor%}
+    </div>
+    
+    <fieldset id='fieldset' class="d-none">
+        <form method="POST" action="{% url 'mainapp:update_object' request.resolver_match.kwargs.pk %}">
+            {%csrf_token%}
+            {% include "mainapp/form_snippet.html" with form=form %}
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-success"><i class="bi bi-pencil-square me-2"></i>Update</button>
+            </div>
+        </form>
+    </fieldset>
+</div>
+
+<style>
+    .info_update:hover {
+        filter: brightness(110%);
+        transition: 0.2s ease-in;
+    }
+
+ 
+
+</style>
+
+<script>
+    document.getElementById('enable').addEventListener('click', function() {
+        document.getElementById('display_info').classList.add('d-none');
+        document.getElementById('fieldset').classList.remove('d-none');
+        this.nextElementSibling.classList.remove('d-none');
+        this.classList.add('d-none');
+    });
+</script>
+
+
+
+{% endblock %}

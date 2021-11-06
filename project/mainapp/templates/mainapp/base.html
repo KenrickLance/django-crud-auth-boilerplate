@@ -1,0 +1,381 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
+        <!-- Animation -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        
+        <title>{{ active_page }} | {% settings_value "APP_BRAND" %}</title>
+    </head>
+        <style>
+            .menu-item-modal {
+                cursor: pointer;
+            }
+            .menu-item-modal:hover {
+                color: rgb(89, 17, 122);
+            }
+
+            .purple-gradient {
+            background: -webkit-linear-gradient(#4432ba, #462f66);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            }
+
+            body {
+                background-color: #f8f8fa !important; 
+            }
+
+
+            img {
+                pointer-events: none;
+            }
+
+            *:not(i) {
+                font-family: 'Manrope', sans-serif !important;
+            }
+
+            .name-app {
+                font-size: 0.75rem;
+            }
+
+            #regular-sidebar {
+                margin: 0 !important;
+                height: 100% !important;
+                width: 280px !important;
+                overflow-y: auto;
+                position: fixed;
+            }
+
+            #block-content {
+                width: 100%;
+                padding: 4vw;
+                flex: 1;
+                margin: 0 0 0 280px;
+            }
+
+            .form-control:focus {
+                border-color: #52acd6;
+                box-shadow: none;
+            }
+            
+            input:focus {
+                border-color: #52acd6 !important;
+                box-shadow: none !important;
+            }
+
+            .btn-close:focus {
+                box-shadow: none;
+            }
+
+            .btn:focus {
+                border-color: transparent !important;
+                filter: brightness(80%);
+                box-shadow: none !important;
+            }
+
+            .form-select:focus {
+                border-color: #52acd6;
+                box-shadow: none;
+            }
+
+
+            .nav-link.link-dark {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                color: rgb(54, 54, 54);
+            }
+
+            #regular-sidebar a {
+                border-radius: 15px !important;
+                cursor: pointer;
+            }
+
+            #regular-sidebar a:hover {
+                border-radius: 15px !important;
+                background: none !important;
+                background-color: rgb(235, 235, 235) !important;
+                color: rgb(63, 63, 63) !important;
+            }
+
+
+            .card {
+                border-radius: 20px; 
+                border: none; 
+                box-shadow: 1px 2px 9px 1px rgba(0,0,0,0.05);
+                -webkit-box-shadow: 1px 2px 9px 1px rgba(0,0,0,0.05);
+                -moz-box-shadow: 1px 2px 9px 1px rgba(0,0,0,0.05);
+                background-color: #ffffff;
+                display: block;
+            }
+
+            .card .header-content {
+                font-size: 1.2rem;
+            }
+
+            .card .sub-content {
+                font-size: 0.9rem;
+            }
+
+            .card .div-cover {
+                height: 150px;
+            }
+
+            .card .card-img-top {
+                border-radius: 20px 20px 0 0; 
+                width:100%;
+                height:100%; 
+                object-fit:cover; 
+            }
+
+            label {
+                font-weight: 600;
+                font-size: 0.8rem;
+                margin-bottom: 0.2rem !important;
+                color: rgb(66, 66, 66);
+            }
+
+            .h1, .h2, .h3, .h4, .h5, .h6, th {
+                color: rgb(61, 61, 61);
+            }
+
+            .active-menu {
+                background-color: transparent !important;
+                background: rgb(15,74,115) !important;
+                background: linear-gradient(145deg, rgba(15,74,115,1) 29%, rgba(15,145,165,1) 100%) !important;
+                color: white !important;
+            }
+
+            .alert-error {
+                color: #842029;
+                background-color: #f8d7da;
+                border-color: #f5c2c7;
+            }
+
+           
+
+            @media (max-width: 1199.98px) { 
+                #regular-sidebar {
+                    width: 230px !important;
+                }
+
+                #block-content {
+                    margin: 0 0 0 230px;
+                }
+            }
+
+            @media (max-width: 991.98px) { 
+                #regular-sidebar {
+                    height: 100% !important;
+                    width: 5.9rem !important;
+                    padding: 0 !important;
+                    position: fixed;
+                    bottom: 0 !important;
+                    z-index: 100;
+                }
+
+                #regular-sidebar .nav-inner-text {
+                    font-size: 7.5px;
+                    display: block !important;
+                    margin-top: -5px;
+                }
+
+                #regular-sidebar ul {
+                    flex-direction: column !important;
+                    flex: 1;
+                    align-items: center !important;
+                }
+
+                #regular-sidebar li {
+                    flex: 1;
+                    margin: 0 !important;
+                }
+
+                #regular-sidebar i {
+                    font-size: 25px !important;
+                }
+
+                #block-content {
+                    margin: 0 0 0 5.5rem;
+                }
+
+                #regular-sidebar ul {
+                    text-align: center;
+                }
+
+                #regular-sidebar i {
+                    margin: 0 !important;
+                }
+
+                .to-hide {
+                    display: none !important;
+                }
+
+                .active-menu {
+                    border-radius: 0 !important;
+                    background: none !important;
+                    background: rgb(15,74,115);
+                    background: linear-gradient(145deg, rgba(15,74,115,1) 29%, rgba(15,145,165,1) 100%);
+                    color: rgb(204, 204, 204) !important;
+                }
+
+                #regular-sidebar a:hover {
+                    background: none !important;
+                    background-color: none !important;
+                }
+            }
+
+            @media (max-width: 767.98px) { 
+                #regular-sidebar {
+                    height: 4.5rem !important;
+                    width: 100% !important;
+                    padding: 0 !important;
+                    position: fixed;
+                    bottom: 0 !important;
+                    z-index: 100;
+                    background: rgb(15,74,115) !important;
+                    background: linear-gradient(145deg, rgba(15,74,115,1) 29%, rgba(15,145,165,1) 100%) !important;
+                }
+
+                #regular-sidebar .nav-inner-text {
+                    font-size: 7.5px;
+                    display: block !important;
+                    margin-top: -5px;
+                }
+
+
+                #regular-sidebar ul {
+                    flex-direction: row !important;
+                    flex: 1;
+                    align-items: center !important;
+                }
+
+                #regular-sidebar li {
+                    flex: 1;
+                    margin: 0 !important;
+                }
+
+                #regular-sidebar i {
+                    font-size: 25px !important;
+                }
+
+                #block-content {
+                    margin: 0;
+                    padding-bottom: 100px !important;
+                }
+
+                #regular-sidebar ul {
+                    text-align: center;
+                }
+
+                #regular-sidebar i {
+                    margin: 0 !important;
+                }
+
+                .to-hide {
+                    display: none !important;
+                }
+
+                .active-menu {
+                    border-radius: 0 !important;
+                    background: none !important;
+                    color: white !important;
+                }
+
+                #regular-sidebar a:hover {
+                    background: none !important;
+                    background-color: none !important;
+                }
+            }
+        </style>
+
+        <div id='wrapper' class="d-flex">
+            <div id='regular-sidebar' class="d-flex flex-column flex-shrink-0 p-4 bg-white">
+                <img src=' {% settings_value "APP_LOGO" %}' class='to-hide mx-auto d-block my-4' width="35%">
+                <p class="to-hide name-app fw-bold h6 text-center">{{user.first_name}} {{user.last_name}}</p>
+                <p class="to-hide name-app text-center mb-0">{% now "SHORT_DATETIME_FORMAT" %}</p>
+                <hr class="to-hide my-4">
+                <ul class="nav nav-pills flex-column mb-auto">
+                   
+                    <li class="nav-item mb-3" data-bs-toggle="modal" data-bs-target="#menu_modal">
+                        <a href='{% url "mainapp:dashboard" %}' class="nav-link link-dark {% if active_page == 'Dashboard' %}active-menu{%endif%}">
+                            <i class="bi bi-speedometer2 me-2"></i>
+                            <span class='nav-inner-text d-inline-block'> Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item mb-3" data-bs-toggle="modal" data-bs-target="#menu_modal">
+                        <a href='{% url "mainapp:read_objects" %}' class="nav-link link-dark {% if active_page == 'Read Objects' %}active-menu{%endif%}">
+                            <i class="bi bi-speedometer2 me-2"></i>
+                            <span class='nav-inner-text d-inline-block'> Read Objects</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item mb-3">
+                        <a href='{% url "mainapp:logout" %}' class="nav-link link-dark">
+                            <i class="bi bi-box-arrow-left me-2"></i>
+                            <span class='nav-inner-text d-inline-block'> Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id='block-alert'>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div id='alert-type' class="animate__animated alert alert-{{message.tags}} alert-dismissible fade show position-fixed" role="alert" style="margin-left:30px;z-index: 250; min-width: 30%; bottom: 85px !important; right: 30px !important;">
+                            <strong><i class="bi bi-bell-fill"></i> <span id='alert-title'>Alert. </span></strong> <span id='alert-message'>{{message}}</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div id='block-content'>
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div id='block-script'>
+            </div>
+
+            
+        </div>
+     
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- DOMPurify-->
+        <script nonce="" src="https://cdn.jsdelivr.net/npm/dompurify@2.3.0/dist/purify.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/ushelp/EasyQRCodeJS/dist/easy.qrcode.min.js" ></script>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+        <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@dashboardcode/bsmultiselect@1.1.18/dist/js/BsMultiSelect.min.js" ></script>
+        <script src="https://cdn.jsdelivr.net/npm/@dashboardcode/bsmultiselect@1.1.18/dist/js/BsMultiSelect.esm.min.js" ></script>
+        <script src="https://cdn.jsdelivr.net/npm/@dashboardcode/bsmultiselect@1.1.18/dist/css/BsMultiSelect.min.css" ></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("select").each(function() {
+                    if (this.multiple) {
+                        $(this).bsMultiSelect();
+                    }
+                });
+                
+           
+            });
+        </script>
+    </body>
+</html>

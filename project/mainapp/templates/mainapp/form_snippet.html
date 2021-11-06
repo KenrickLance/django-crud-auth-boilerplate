@@ -1,0 +1,29 @@
+{% load widget_tweaks %}
+
+
+{% for field in form %}
+    
+{% if field.field.widget.input_type == 'text'  or field.field.widget.input_type == 'password' or field.field.widget.input_type == 'email' or field.field.widget.input_type == 'date' or field.field.widget.input_type == 'datetime-local' or field.field.widget.input_type == 'file' %}
+    <div class="col col-12 mb-3">
+        
+        <label class="form-label">
+            {{field.label}}
+        </label>
+
+        {{field|attr:"class:form-control"}}
+    </div>
+{% elif field.field.widget.input_type == 'select' %}
+    <div class="col col-12 mb-3">
+            
+        <label class="form-label">
+            {{field.label}}
+        </label>
+
+        {{field|attr:"class:form-select"}}
+    </div>
+
+    {{field.widget.input_type}}
+{% endif %}
+
+{% endfor %}
+   

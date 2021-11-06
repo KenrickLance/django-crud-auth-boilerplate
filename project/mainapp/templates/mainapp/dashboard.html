@@ -1,0 +1,8 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<p class="h1 fw-bold mb-3">Dashboard</p>
+<div class="card p-5">
+    {% url 'mainapp:dashboard' as action %}
+    {% include "mainapp/form_snippet.html" with form=form action=action %}
+</div>
+{% endblock %}

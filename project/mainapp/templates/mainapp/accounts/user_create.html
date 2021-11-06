@@ -1,0 +1,38 @@
+{% load widget_tweaks %}
+
+    {% csrf_token %}
+    
+    <div class="row">
+        <div class="col col-12  mb-3">
+        
+            <label class="form-label">
+                {{form.username.label}}
+            </label>
+    
+            {{form.username|attr:"class:form-control"}}
+        </div>
+        <div class="col col-12  mb-3">
+        
+            <label class="form-label">
+                {{form.email.label}}
+            </label>
+    
+            {{form.email|attr:"class:form-control"}}
+        </div>
+        <div class="col col-12 col-md-6 mb-3">
+        
+            <label class="form-label">
+                {{form.password1.label}}
+            </label>
+    
+            {{form.password1|attr:"class:form-control"}}
+        </div>
+        <div class="col col-12 col-md-6 mb-3">
+        
+            <label class="form-label">
+                {{form.password2.label}}
+            </label>
+    
+            {{form.password2|attr:"class:form-control"}}
+        </div>
+    </div>
